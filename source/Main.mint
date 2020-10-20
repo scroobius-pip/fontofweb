@@ -5,7 +5,7 @@ component Main {
 
   fun render : Html {
     <div::main>
-      <Landing/>
+      <ResultPage/>
     </div>
   }
 }

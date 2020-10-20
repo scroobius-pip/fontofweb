@@ -6,6 +6,8 @@ component AnalyzeInput {
     padding: 1em;
     display: flex;
     justify-content: space-between;
+    max-width: 540px;
+    margin: auto;
 
     input {
       outline: none;
@@ -13,7 +15,7 @@ component AnalyzeInput {
       width: 80%;
       border: none;
       color: #{Color:PRIMARY};
-      font-size: 2em;
+      font-size: 1.8em;
       font-family: Poppins, sans-serif;
     }
 

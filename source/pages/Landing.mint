@@ -1,14 +1,15 @@
-component Landing {
+component LandingPage {
   style logo {
-    text-align: center;
-    height: 2em;
+    width: 100%;
+    height: 1.8em;
   }
 
   style body {
     height: 100%;
     width: 100%;
     background: transparent;
-    margin-top: 25%;
+
+    margin-top: 10em;
     position: relative;
     z-index: 10;
 
@@ -32,9 +33,7 @@ component Landing {
     <div::container>
       <FontBackground>
         <nav>
-          <div::logo>
-            <{ @svg(../../assets/svg/logo.svg) }>
-          </div>
+          <Logo/>
         </nav>
 
         <div::body>

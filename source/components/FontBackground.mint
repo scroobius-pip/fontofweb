@@ -4,8 +4,11 @@ component FontBackground {
   style container {
     background-color: transparent;
     height: 100%;
+    width: 100%;
     padding: 48px;
     overflow: hidden;
+
+    position: relative;
   }
 
   style font (top : Number, left : Number) {
@@ -14,10 +17,10 @@ component FontBackground {
     z-index: 1;
 
     transition: .3s;
-    opacity: .13;
+    opacity: .09;
 
     &:hover {
-      opacity: .1;
+      opacity: .08;
     }
 
     left: "#{left}%";
