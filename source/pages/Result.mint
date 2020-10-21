@@ -14,6 +14,7 @@ component ResultPage {
 
   style top {
     background-color: #{Color:WHITE};
+    height: 100%;
   }
 
   style inputcontainer {
@@ -31,6 +32,7 @@ component ResultPage {
     align-items: center;
     z-index: 10;
     position: relative;
+    height: 100%;
 
     h1 {
       font-size: 1.8em;
@@ -44,7 +46,8 @@ component ResultPage {
     margin-top: 48px;
     display: grid;
     max-width: 542px;
-    height: 100%;
+
+    /* height: 100vh; */
   }
 
   style logocontainer {

@@ -73,11 +73,24 @@ component AnalyzeInput {
     padding: 1em 3em;
   }
 
+  fun isValidUrl (url : String) {
+    !String.isEmpty(url)
+  }
+
   fun handleSubmit (event : Html.Event) {
-    sequence {
-      Html.Event.preventDefault(event)
-      onSubmit(value)
+    if (isValidUrl(value)) {
+      sequence {
+        onSubmit(value)
+        Promise.never()
+      }
+    } else {
+      sequence {
+        Html.Event.preventDefault(event)
+        Promise.never()
+      }
     }
+
+    /* Html.Event.preventDefault(event) */
   }
 
   fun handleKeyDown (event : Html.Event) {
@@ -104,19 +117,21 @@ component AnalyzeInput {
         type="text"
         onChange={handleInput}/>
 
-      <button
-        disabled={loading}
-        onClick={handleSubmit}>
+      <a href="/site/#{value}">
+        <button
+          disabled={loading}
+          onClick={handleSubmit}>
 
-        <{
-          if (loading) {
-            "LOADING"
-          } else {
-            "ANALYZE"
-          }
-        }>
+          <{
+            if (loading) {
+              "LOADING"
+            } else {
+              "ANALYZE"
+            }
+          }>
 
-      </button>
+        </button>
+      </a>
     </div>
   }
 }

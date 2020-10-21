@@ -20,6 +20,7 @@ component LandingPage {
 
   style body {
     height: 100%;
+
     width: 100%;
     background: transparent;
 
@@ -36,7 +37,7 @@ component LandingPage {
 
   style container {
     height: 100vh;
-    background-color: transparent;
+    background-color: "#{Color:WHITE}";
 
     /* display: flex; */
     align-items: center;
@@ -45,7 +46,7 @@ component LandingPage {
   }
 
   fun handleSubmit (value : String) {
-    next {  }
+    Navigation.goTo(Page::Result(value))
   }
 
   fun render {
@@ -62,6 +63,7 @@ component LandingPage {
 
           <div::inputcontainer>
             <AnalyzeInput
+              value={url}
               onChange={(value : String) { next { url = value } }}
               loading={false}
               onSubmit={handleSubmit}/>
