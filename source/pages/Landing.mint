@@ -1,4 +1,6 @@
 component LandingPage {
+  state url = ""
+
   style logo {
     width: 100%;
     height: 1.8em;
@@ -42,6 +44,10 @@ component LandingPage {
     flex-direction: column;
   }
 
+  fun handleSubmit (value : String) {
+    next {  }
+  }
+
   fun render {
     <div::container>
       <FontBackground>
@@ -55,7 +61,11 @@ component LandingPage {
           <Margin value="15px"/>
 
           <div::inputcontainer>
-            <AnalyzeInput/>
+            <AnalyzeInput
+              onChange={(value : String) { next { url = value } }}
+              loading={false}
+              onSubmit={handleSubmit}/>
+
             <Margin/>
           </div>
         </div>

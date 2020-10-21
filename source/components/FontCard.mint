@@ -1,8 +1,7 @@
-record FontData {
-
-}
-
 component FontCard {
+  property elementData : Map(String, FontData)
+  property elementName : String
+
   style elementcontainer {
     display: block;
     margin-top: -2em;
@@ -19,10 +18,16 @@ component FontCard {
     display: inline-block;
   }
 
+  style fallbacks {
+    margin-bottom: 12px;
+  }
+
   style container {
     margin-bottom: 10px;
     color: #{Color:WHITE};
     padding: 2em;
+
+    padding-bottom: 1em;
     background-color: #{Color:TRANSPARENT};
     transition: .3s;
 
@@ -44,6 +49,10 @@ component FontCard {
     font-weight: 600;
   }
 
+  style family (family : String) {
+    font-family: "#{String.toLowerCase(family)}";
+  }
+
   style variants {
     display: flex;
   }
@@ -57,42 +66,58 @@ component FontCard {
     }
   }
 
+  fun renderFont (fontName : String, fontData : FontData) : Html {
+    <div style="margin-bottom:48px;">
+      <div::font>
+        <div>
+          <span::family(fontName) style="margin-right:.2em;">
+            <{ fontName }>
+          </span>
+
+          <span::download style="cursor:pointer;"/>
+        </div>
+      </div>
+
+      <div::fallbacks>
+        <label>"Fallbacks"</label>
+
+        <h3>
+          <{
+            fontData.fallbacks
+            |> String.join(", ")
+          }>
+        </h3>
+      </div>
+
+      <div>
+        <{
+          fontData.variants
+          |> Array.map(
+            (variant : FontVariant) {
+              <FontVariant
+                weight={variant.weight}
+                lineHeight={variant.lineHeight}
+                size={variant.size}/>
+            })
+        }>
+      </div>
+    </div>
+  }
+
+  get renderFontList {
+    elementData
+    |> Map.map(renderFont)
+    |> Map.values()
+  }
+
   fun render {
     <div::container>
       <div::elementcontainer>
-        <div::element>"<span />"</div>
+        <div::element>"<#{elementName} />"</div>
       </div>
 
-      <Margin value="40px"/>
-
-      <div>
-        <div::font>
-          <div>
-            <span style="margin-right:.2em;">
-              "Roboto"
-            </span>
-
-            <span::download style="cursor:pointer;"/>
-          </div>
-        </div>
-
-        <div>
-          <FontVariant
-            weight="400"
-            lineHeight="20px"
-            size="50px"/>
-
-          <FontVariant
-            weight="400"
-            lineHeight="25px"
-            size="30px"/>
-        </div>
-
-        <div>
-          <label>"Fallbacks"</label>
-          <h3>"Consolas, Arial, san-serif"</h3>
-        </div>
-      </div>
+      <Margin value="24px"/>
+      <{ renderFontList }>
     </div>
   }
 }
@@ -104,7 +129,7 @@ component FontVariant {
 
   style container {
     display: flex;
-    margin-bottom: 25px;
+    margin-bottom: 24px;
 
     label {
       font-size: .9em;
@@ -125,17 +150,26 @@ component FontVariant {
     <div::container>
       <div::mr>
         <label>"Weight"</label>
-        <h3>"600"</h3>
+
+        <h3>
+          <{ weight }>
+        </h3>
       </div>
 
       <div::mr>
         <label>"Line Height"</label>
-        <h3>"20px"</h3>
+
+        <h3>
+          <{ lineHeight }>
+        </h3>
       </div>
 
       <div>
         <label>"Size"</label>
-        <h3>"50px"</h3>
+
+        <h3>
+          <{ size }>
+        </h3>
       </div>
     </div>
   }

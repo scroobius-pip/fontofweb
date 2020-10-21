@@ -1,12 +1,13 @@
 component FontBackground {
   property children : Array(Html) = []
+  property disable = false
 
   style container {
     background-color: transparent;
     height: 100%;
 
     /* width: 100%; */
-    padding: 48px;
+    padding: 24px;
     overflow: hidden;
 
     position: relative;
@@ -29,11 +30,9 @@ component FontBackground {
     /* max-width: 540px; */
   }
 
-  fun render {
-    <div::container>
-      <div::inner>
-        <{ children }>
-
+  get background {
+    if (!disable) {
+      <div>
         <div::font(80, 10)>
           <{ @svg(../../assets/svg/majesti.svg) }>
         </div>
@@ -49,6 +48,17 @@ component FontBackground {
         <div::font(55, 15)>
           <{ @svg(../../assets/svg/opensans.svg) }>
         </div>
+      </div>
+    } else {
+      Html.empty()
+    }
+  }
+
+  fun render {
+    <div::container>
+      <div::inner>
+        <{ children }>
+        <{ background }>
       </div>
     </div>
   }

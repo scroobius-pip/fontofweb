@@ -1,11 +1,16 @@
 component Logo {
   style logo {
-    height: 1.8em;
+    height: 1.6em;
+    cursor: pointer;
   }
 
   fun render {
-    <div::logo>
+    <a::logo
+      onClick={() { Navigation.goTo(Page::Landing) }}
+      href="/">
+
       <{ @svg(../../assets/svg/logo.svg) }>
-    </div>
+
+    </a>
   }
 }

@@ -19,7 +19,7 @@ component Navigator {
   get currentPage : Html {
     case (page) {
       Page::Landing => <LandingPage/>
-      Page::Result url => <ResultPage url={url}/>
+      Page::Result url => <ResultPage initialUrl={url}/>
     }
   }
 

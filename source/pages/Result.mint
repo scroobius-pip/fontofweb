@@ -1,10 +1,15 @@
 component ResultPage {
-  property url : String
+  property initialUrl : String
+
+  state url = ""
+  state loading = false
+  state result : ReportResult = ReportResult::Empty
 
   style container {
     background-color: #{Color:PRIMARY};
     padding-bottom: 20%;
     height: 100%;
+    width: 100%;
   }
 
   style top {
@@ -17,22 +22,18 @@ component ResultPage {
     text-align: center;
   }
 
+  style mt (value : Number) {
+    margin-top: "#{value}px";
+  }
+
   style body {
     width: 100%;
-
-    /* display: flex; */
-
-    /* justify-content: space-between; */
     align-items: center;
-
-    /* background: orange; */
     z-index: 10;
     position: relative;
 
     h1 {
       font-size: 1.8em;
-
-      /* margin: auto; */
       text-align: center;
     }
   }
@@ -41,45 +42,144 @@ component ResultPage {
     background-color: #{Color:PRIMARY};
     margin: auto;
     margin-top: 48px;
+    display: grid;
     max-width: 542px;
+    height: 100%;
   }
 
   style logocontainer {
     display: flex;
+  }
 
-    /* align-items: flex-start; */
+  fun requestReport (url : String) : Promise(Never, ReportResult) {
+    sequence {
+      /* Timer.timeout(400, "") */
+      Report.getMock(url)
+
+      /* ReportResult::Empty */
+    }
+  }
+
+  fun handleSubmit (value : String) {
+    getReport()
+  }
+
+  fun getReport {
+    sequence {
+      next
+        {
+          loading = true,
+          result = ReportResult::Empty
+        }
+
+      parallel {
+        requestResult =
+          requestReport(url)
+
+        Debug.log(result)
+        Promise.never()
+      } then {
+        next { result = requestResult }
+      }
+    } finally {
+      next { loading = false }
+    }
+  }
+
+  fun componentDidMount {
+    if (String.isEmpty(initialUrl)) {
+      Promise.never()
+    } else {
+      sequence {
+        next { url = initialUrl }
+        getReport()
+      }
+    }
+  }
+
+  fun renderFontCard (
+    elementName : String,
+    elementData : Map(String, FontData)
+  ) : Html {
+    <FontCard
+      elementName={elementName}
+      elementData={elementData}/>
+  }
+
+  get renderResult {
+    case (result) {
+      ReportResult::Error err => Html.empty()
+
+      ReportResult::Success data =>
+        <div>
+          <{
+            data.fontInfo
+            |> Map.map(renderFontCard())
+            |> Map.values()
+          }>
+        </div>
+
+      ReportResult::Empty => Html.empty()
+    }
   }
 
   fun render {
     <div::container>
       <div::top>
-        <FontBackground>
+        <FontBackground disable={true}>
           <div::body>
             <div::logocontainer>
               <Logo/>
             </div>
 
-            <Margin value="60px"/>
-
-            <div::inputcontainer>
-              <AnalyzeInput/>
-              <Margin/>
+            /* <Margin value="60px"/> */
+            <div::inputcontainer::mt(48)>
+              <AnalyzeInput
+                value={url}
+                onChange={
+                  (value : String) {
+                    sequence {
+                      if (result != ReportResult::Empty) {
+                        next
+                          {
+                            result = ReportResult::Empty,
+                            url = value
+                          }
+                      } else {
+                        next { url = value }
+                      }
+                    }
+                  }
+                }
+                loading={loading}
+                onSubmit={handleSubmit}/>
             </div>
 
-            <h1>"3 fonts were found on #{url}"</h1>
+            <h1::mt(24)>
+              <{
+                case (result) {
+                  ReportResult::Empty => "Type a Website and Find Its Fonts"
+                  ReportResult::Success data => "#{Map.size(data.fontInfo)} fonts were found on #{url}"
+                  => "There was an issue getting font data from #{url}"
+                }
+              }>
+            </h1>
           </div>
         </FontBackground>
       </div>
 
       <div::results>
-        <FontCard/>
-        <FontCard/>
-        <FontCard/>
-        <FontCard/>
-        <FontCard/>
+        <{ renderResult }>
       </div>
 
       <div/>
     </div>
   }
+}
+
+enum State {
+  Loading
+  Typing
+  Loaded(ReportResult)
+  Error
 }
