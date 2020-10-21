@@ -97,8 +97,7 @@ component AnalyzeInput {
     case (event.keyCode) {
       13 =>
         sequence {
-          Html.Event.preventDefault(event)
-          onSubmit()
+          onSubmit(value)
           Promise.never()
         }
 
@@ -113,6 +112,7 @@ component AnalyzeInput {
   fun render : Html {
     <div::container>
       <input
+        onKeyDown={handleKeyDown}
         value={value}
         type="text"
         onChange={handleInput}/>
