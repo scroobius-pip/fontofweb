@@ -6,9 +6,10 @@ component AnalyzeInput {
     padding: 1em;
     display: flex;
     justify-content: space-between;
-    max-width: 540px;
-    margin: auto;
 
+    /* max-width: 540px; */
+
+    /* margin: auto; */
     input {
       outline: none;
       background-color: #{Color:GREY};

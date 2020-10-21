@@ -4,6 +4,18 @@ component LandingPage {
     height: 1.8em;
   }
 
+  style inputcontainer {
+    margin: auto;
+    max-width: 600px;
+    text-align: center;
+  }
+
+  style logocontainer {
+    display: flex;
+
+    /* align-items: flex-start; */
+  }
+
   style body {
     height: 100%;
     width: 100%;
@@ -23,7 +35,8 @@ component LandingPage {
   style container {
     height: 100vh;
     background-color: transparent;
-    display: flex;
+
+    /* display: flex; */
     align-items: center;
     justify-content: center;
     flex-direction: column;
@@ -32,16 +45,19 @@ component LandingPage {
   fun render {
     <div::container>
       <FontBackground>
-        <nav>
+        <div::logocontainer>
           <Logo/>
-        </nav>
+        </div>
 
         <div::body>
           <h1>"Type a Website and Find Its Fonts"</h1>
 
           <Margin value="15px"/>
 
-          <AnalyzeInput/>
+          <div::inputcontainer>
+            <AnalyzeInput/>
+            <Margin/>
+          </div>
         </div>
       </FontBackground>
     </div>

@@ -4,7 +4,8 @@ component FontBackground {
   style container {
     background-color: transparent;
     height: 100%;
-    width: 100%;
+
+    /* width: 100%; */
     padding: 48px;
     overflow: hidden;
 
@@ -14,16 +15,14 @@ component FontBackground {
   style font (top : Number, left : Number) {
     position: absolute;
     top: "#{top}%";
+    left: "#{left}%";
     z-index: 1;
-
     transition: .3s;
     opacity: .09;
 
     &:hover {
       opacity: .08;
     }
-
-    left: "#{left}%";
   }
 
   style inner {
@@ -34,10 +33,6 @@ component FontBackground {
     <div::container>
       <div::inner>
         <{ children }>
-
-        <div::font(10, 15)>
-          <{ @svg(../../assets/svg/majesti.svg) }>
-        </div>
 
         <div::font(80, 10)>
           <{ @svg(../../assets/svg/majesti.svg) }>
