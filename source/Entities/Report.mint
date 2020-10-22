@@ -11,7 +11,8 @@ record FontData {
 }
 
 record Report {
-  fontInfo : Map(String, Map(String, FontData))
+  fontInfo : Map(String, Map(String, FontData)),
+  count : Number
 }
 
 enum ReportResult {
@@ -59,7 +60,7 @@ module Report {
   fun getMock (url : String) : Promise(Never, ReportResult) {
     sequence {
       body =
-        "{\"fontInfo\":{\"span\":{\"Helvetica\":{\"fallbacks\":[\"Arial\",\"sans-serif\"],\"fontName\":\"Helvetica\",\"src\":{},\"variants\":[{\"lineHeight\":\"24px\",\"size\":\"12px\",\"weight\":\"700\"},{\"lineHeight\":\"22px\",\"size\":\"12px\",\"weight\":\"700\"},{\"lineHeight\":\"24px\",\"size\":\"12px\",\"weight\":\"400\"},{\"lineHeight\":\"14.74px\",\"size\":\"11px\",\"weight\":\"400\"},{\"lineHeight\":\"16.08px\",\"size\":\"12px\",\"weight\":\"400\"}]}},\"h2\":{\"SFProDisplay-Regular\":{\"fallbacks\":[\"Helvetica\",\"Arial\",\"sans-serif\"],\"fontName\":\"SFProDisplay-Regular\",\"src\":{},\"variants\":[{\"lineHeight\":\"32px\",\"size\":\"28px\",\"weight\":\"400\"}]}},\"a\":{\"Helvetica\":{\"fallbacks\":[\"Arial\",\"sans-serif\"],\"fontName\":\"Helvetica\",\"src\":{},\"variants\":[{\"lineHeight\":\"22px\",\"size\":\"12px\",\"weight\":\"700\"},{\"lineHeight\":\"18.76px\",\"size\":\"14px\",\"weight\":\"500\"},{\"lineHeight\":\"48px\",\"size\":\"17px\",\"weight\":\"700\"},{\"lineHeight\":\"16.08px\",\"size\":\"12px\",\"weight\":\"400\"},{\"lineHeight\":\"18px\",\"size\":\"12px\",\"weight\":\"700\"},{\"lineHeight\":\"19.2px\",\"size\":\"12px\",\"weight\":\"400\"}]},\"SFProText-Semibold\":{\"fallbacks\":[\"Helvetica\",\"Arial\",\"sans-serif\"],\"fontName\":\"SFProText-Semibold\",\"src\":{},\"variants\":[{\"lineHeight\":\"18.76px\",\"size\":\"14px\",\"weight\":\"600\"}]}},\"button\":{\"Helvetica\":{\"fallbacks\":[\"Arial\",\"sans-serif\"],\"fontName\":\"Helvetica\",\"src\":{},\"variants\":[{\"lineHeight\":\"48px\",\"size\":\"20px\",\"weight\":\"700\"}]}}},\"error\":\"\"}"
+        "{\"fontInfo\":{\"span\":{\"Helvetica\":{\"fallbacks\":[\"Arial\",\"sans-serif\"],\"fontName\":\"Helvetica\",\"src\":{},\"variants\":[{\"lineHeight\":\"24px\",\"size\":\"12px\",\"weight\":\"700\"},{\"lineHeight\":\"22px\",\"size\":\"12px\",\"weight\":\"700\"},{\"lineHeight\":\"24px\",\"size\":\"12px\",\"weight\":\"400\"},{\"lineHeight\":\"14.74px\",\"size\":\"11px\",\"weight\":\"400\"},{\"lineHeight\":\"16.08px\",\"size\":\"12px\",\"weight\":\"400\"}]}},\"h2\":{\"SFProDisplay-Regular\":{\"fallbacks\":[\"Helvetica\",\"Arial\",\"sans-serif\"],\"fontName\":\"SFProDisplay-Regular\",\"src\":{},\"variants\":[{\"lineHeight\":\"32px\",\"size\":\"28px\",\"weight\":\"400\"}]}},\"a\":{\"Helvetica\":{\"fallbacks\":[\"Arial\",\"sans-serif\"],\"fontName\":\"Helvetica\",\"src\":{},\"variants\":[{\"lineHeight\":\"22px\",\"size\":\"12px\",\"weight\":\"700\"},{\"lineHeight\":\"18.76px\",\"size\":\"14px\",\"weight\":\"500\"},{\"lineHeight\":\"48px\",\"size\":\"17px\",\"weight\":\"700\"},{\"lineHeight\":\"16.08px\",\"size\":\"12px\",\"weight\":\"400\"},{\"lineHeight\":\"18px\",\"size\":\"12px\",\"weight\":\"700\"},{\"lineHeight\":\"19.2px\",\"size\":\"12px\",\"weight\":\"400\"}]},\"SFProText-Semibold\":{\"fallbacks\":[\"Helvetica\",\"Arial\",\"sans-serif\"],\"fontName\":\"SFProText-Semibold\",\"src\":{},\"variants\":[{\"lineHeight\":\"18.76px\",\"size\":\"14px\",\"weight\":\"600\"}]}},\"button\":{\"Helvetica\":{\"fallbacks\":[\"Arial\",\"sans-serif\"],\"fontName\":\"Helvetica\",\"src\":{},\"variants\":[{\"lineHeight\":\"48px\",\"size\":\"20px\",\"weight\":\"700\"}]}}},\"error\":\"\",\"count\":2}"
 
       parseResponse(body)
     }

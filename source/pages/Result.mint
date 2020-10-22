@@ -67,6 +67,11 @@ component ResultPage {
     getReport()
   }
 
+  /*
+  get fontCount {
+
+   }
+  */
   fun getReport {
     sequence {
       next
@@ -162,7 +167,7 @@ component ResultPage {
               <{
                 case (result) {
                   ReportResult::Empty => "Type a Website and Find Its Fonts"
-                  ReportResult::Success data => "#{Map.size(data.fontInfo)} fonts were found on #{url}"
+                  ReportResult::Success data => "#{data.count} fonts found on #{url}"
                   => "There was an issue getting font data from #{url}"
                 }
               }>

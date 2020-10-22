@@ -18,7 +18,11 @@ component FontCard {
     display: inline-block;
   }
 
-  style fallbacks {
+  style fallbacks (f : Array(String)) {
+    if (Array.isEmpty(f)) {
+      display: none;
+    }
+
     margin-bottom: 12px;
   }
 
@@ -50,7 +54,7 @@ component FontCard {
   }
 
   style family (family : String) {
-    font-family: "#{String.toLowerCase(family)}";
+    /* font-family: "#{String.toLowerCase(family)}"; */
   }
 
   style variants {
@@ -78,7 +82,7 @@ component FontCard {
         </div>
       </div>
 
-      <div::fallbacks>
+      <div::fallbacks(fontData.fallbacks)>
         <label>"Fallbacks"</label>
 
         <h3>
@@ -89,7 +93,7 @@ component FontCard {
         </h3>
       </div>
 
-      <div>
+      <div style="margin-top:24px;">
         <{
           fontData.variants
           |> Array.map(
@@ -129,7 +133,7 @@ component FontVariant {
 
   style container {
     display: flex;
-    margin-bottom: 24px;
+    margin-bottom: 12px;
 
     label {
       font-size: .9em;
