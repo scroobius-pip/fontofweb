@@ -57,7 +57,7 @@ component ResultPage {
   fun requestReport (url : String) : Promise(Never, ReportResult) {
     sequence {
       /* Timer.timeout(400, "") */
-      Report.getMock(url)
+      Report.get(url)
 
       /* ReportResult::Empty */
     }
