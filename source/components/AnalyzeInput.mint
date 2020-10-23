@@ -117,11 +117,11 @@ component AnalyzeInput {
         type="text"
         onChange={handleInput}/>
 
-      <a href="/site/#{value}">
-        <button
-          disabled={loading}
-          onClick={handleSubmit}>
+      <a
+        href="/site/#{value}"
+        onClick={handleSubmit}>
 
+        <button disabled={loading}>
           <{
             if (loading) {
               "LOADING"
@@ -129,8 +129,8 @@ component AnalyzeInput {
               "ANALYZE"
             }
           }>
-
         </button>
+
       </a>
     </div>
   }

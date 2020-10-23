@@ -167,7 +167,7 @@ component ResultPage {
               <{
                 case (result) {
                   ReportResult::Empty => "Type a Website and Find Its Fonts"
-                  ReportResult::Success data => "#{data.count} fonts found on #{url}"
+                  ReportResult::Success data => "#{data.count} font(s) found on #{url}"
                   => "There was an issue getting font data from #{url}"
                 }
               }>
