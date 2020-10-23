@@ -81,11 +81,7 @@ component AnalyzeInput {
     if (isValidUrl(value)) {
       sequence {
         Html.Event.preventDefault(event)
-
-        value
-        |> getHostNameFromString
-        |> onSubmit
-
+        onSubmit(value)
         Promise.never()
       }
     } else {
@@ -102,10 +98,7 @@ component AnalyzeInput {
     case (event.keyCode) {
       13 =>
         sequence {
-          value
-          |> getHostNameFromString
-          |> onSubmit
-
+          onSubmit(value)
           Promise.never()
         }
 
@@ -115,10 +108,6 @@ component AnalyzeInput {
 
   fun handleInput (event : Html.Event) {
     onChange(Dom.getValue(event.target))
-  }
-
-  fun getHostNameFromString (string : String) : String {
-    Url.parse(string).host
   }
 
   fun render : Html {
