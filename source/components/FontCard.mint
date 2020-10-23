@@ -8,6 +8,12 @@ component FontCard {
     margin-left: -2em;
   }
 
+  style show (value : Bool) {
+    if (value) {
+      display: none;
+    }
+  }
+
   style element {
     line-height: 0px;
     font-weight: 800;
@@ -62,12 +68,30 @@ component FontCard {
   }
 
   style download {
-    height: 1em;
-    width: 1em;
-
-    *:hover {
-      fill: #{Color:PRIMARY};
+    /* margin-left: 1em; */
+    >* {
+      margin-right: .3em;
     }
+
+    >:not(:first-child) {
+      /* border-left: 1px solid #000; */
+
+      /* margin: 5px; */
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      text-transform: uppercase;
+    }
+
+    /* font-size: .5em; */
+  }
+
+  fun renderFontSrc (srcName : String, src : String) : Html {
+    <a href={src}>
+      <{ srcName }>
+    </a>
   }
 
   fun renderFont (fontName : String, fontData : FontData) : Html {
@@ -77,8 +101,6 @@ component FontCard {
           <span::family(fontName) style="margin-right:.2em;">
             <{ fontName }>
           </span>
-
-          <span::download style="cursor:pointer;"/>
         </div>
       </div>
 
@@ -104,6 +126,18 @@ component FontCard {
                 size={variant.size}/>
             })
         }>
+      </div>
+
+      <div::show(Map.isEmpty(fontData.src))>
+        <label>"Download"</label>
+
+        <div::download>
+          <{
+            fontData.src
+            |> Map.map(renderFontSrc())
+            |> Map.values()
+          }>
+        </div>
       </div>
     </div>
   }

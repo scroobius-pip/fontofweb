@@ -7,6 +7,7 @@ record FontVariant {
 record FontData {
   fallbacks : Array(String),
   fontName : String,
+  src : Map(String, String),
   variants : Array(FontVariant)
 }
 
