@@ -72,6 +72,16 @@ component LandingPage {
           </div>
         </div>
       </FontBackground>
+
+      <div style="float:right;padding:1em;">
+        <a
+          style="color:white;"
+          href="https://www.notion.so/Font-of-Web-875c921acd8d419488899ddb29f5850a">
+
+          "Legal"
+
+        </a>
+      </div>
     </div>
   }
 }
