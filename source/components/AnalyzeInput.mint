@@ -40,6 +40,10 @@ component AnalyzeInput {
       if (loading) {
         background-color: grey;
       }
+
+      if (!isValidUrl(value)) {
+        background-color: grey;
+      }
     }
   }
 
@@ -73,8 +77,13 @@ component AnalyzeInput {
     padding: 1em 3em;
   }
 
-  fun isValidUrl (url : String) {
-    !String.isEmpty(url)
+  fun isValidUrl (url : String) : Bool {
+    `
+    (()=>{
+      const urlRegex = /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g
+    return #{url}.match(urlRegex) !== null
+    })()
+    `
   }
 
   fun handleSubmit (event : Html.Event) {
@@ -134,5 +143,16 @@ component AnalyzeInput {
 
       </a>
     </div>
+  }
+}
+
+module JsRegex {
+  fun match (string : String) : Bool {
+    `
+    (()=>{
+      const urlRegex = "^(https?://)?(((www\\.)?([-a-z0-9]{1,63}\\.)*?[a-z0-9][-a-z‌​0-9]{0,61}[a-z0-9]\\‌​.[a-z]{2,6})|((\\d{1‌​,3}\\.){3}\\d{1,3}))‌​(:\\d{2,4})?((/|\\?)‌​(((%[0-9a-f]{2})|[-\‌​\w@\\+\\.~#\\?&/=])*‌​))?$"
+    return string.match(urlRegex) !== null
+    })()
+    `
   }
 }
