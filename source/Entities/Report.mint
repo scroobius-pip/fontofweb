@@ -48,7 +48,7 @@ module Report {
   fun get (url : String) : Promise(Never, ReportResult) {
     sequence {
       response =
-        "https://font-of-web.herokuapp.com/?url=#{url}"
+        "https://api.shapcart.com/?url=#{url}"
         |> Http.get()
         |> Http.send()
 
