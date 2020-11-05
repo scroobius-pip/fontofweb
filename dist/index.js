@@ -276,7 +276,7 @@ var Mint=function(){"use strict";var t,e,n,r,o,i={},a=[],s=/acit|ex(?:s|g|n|p|$)
 }
 
 .m h3 {
-  font-size: 1.8em;
+  font-size: 1.4em;
   line-height: 1em;
 }
 

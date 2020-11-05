@@ -175,7 +175,7 @@ component FontVariant {
     }
 
     h3 {
-      font-size: 1.8em;
+      font-size: 1.4em;
       line-height: 1em;
     }
   }
