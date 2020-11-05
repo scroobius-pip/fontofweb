@@ -122,6 +122,7 @@ component AnalyzeInput {
   fun render : Html {
     <div::container>
       <input
+        placeholder="www.example.com"
         onKeyDown={handleKeyDown}
         value={value}
         type="text"
