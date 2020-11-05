@@ -2,7 +2,7 @@
   "name": "font_of_web",
   "application": {
     "head": "assets/head.html",
-    "title": "font_of_web"
+    "title": "Font of Web - Find & Download Website Fonts"
   },
   "source-directories": [
     "source"
