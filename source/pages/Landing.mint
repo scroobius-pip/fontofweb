@@ -73,7 +73,11 @@ component LandingPage {
         </div>
       </FontBackground>
 
-      <div style="float:right;padding:1em;">
+      <div style="padding:1em;text-align:center">
+        <p style="color:white;opacity:0.5">
+          "This educational use and  downloaded fonts may require additional licensing for personal or commercial use."
+        </p>
+
         <a
           style="color:white;"
           href="https://www.notion.so/Font-of-Web-875c921acd8d419488899ddb29f5850a">
