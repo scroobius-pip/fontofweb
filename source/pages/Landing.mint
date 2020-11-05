@@ -75,7 +75,7 @@ component LandingPage {
 
       <div style="padding:1em;text-align:center">
         <p style="color:white;opacity:0.5">
-          "This educational use and  downloaded fonts may require additional licensing for personal or commercial use."
+          "This tool is for educational use and downloaded fonts may require additional licensing for personal or commercial use."
         </p>
 
         <a
