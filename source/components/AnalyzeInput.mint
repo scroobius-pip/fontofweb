@@ -20,7 +20,8 @@ component AnalyzeInput {
       width: 80%;
       border: none;
       color: #{Color:PRIMARY};
-      font-size: 1.8em;
+
+      font-size: 1.5em;
       font-family: Poppins, sans-serif;
     }
 
