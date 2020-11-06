@@ -47,6 +47,9 @@ module Report {
 
   fun get (url : String) : Promise(Never, ReportResult) {
     sequence {
+      normalizedUrl =
+        normalizeUrl(url)
+
       response =
         "https://api.shapcart.com/?url=#{url}"
         |> Http.get()
@@ -56,6 +59,14 @@ module Report {
     } catch Http.ErrorResponse => error {
       ReportResult::Error("Unable to Request")
     }
+  }
+
+  fun normalizeUrl (urlString : String) : String {
+    url.hostname
+  } where {
+    url =
+      urlString
+      |> Url.parse()
   }
 
   fun getMock (url : String) : Promise(Never, ReportResult) {
