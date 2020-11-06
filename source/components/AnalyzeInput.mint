@@ -8,7 +8,8 @@ component AnalyzeInput {
 
   style container {
     background-color: #{Color:GREY};
-    width: 100%;
+
+    /* width: 100%; */
     border: none;
     padding: 1em;
     display: flex;

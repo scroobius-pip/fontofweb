@@ -79,7 +79,7 @@ component LandingPage {
         </p>
 
         <a
-          style="color:white;"
+          style="color:white;opacity:0.8"
           href="https://www.notion.so/Font-of-Web-875c921acd8d419488899ddb29f5850a">
 
           "Legal"
