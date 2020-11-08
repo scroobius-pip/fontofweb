@@ -62,15 +62,17 @@ module Report {
   }
 
   fun normalizeUrl (urlString : String) : String {
-    if (url.path == "/") {
-      url.hostname
-    } else {
-      "#{url.hostname}#{url.path}"
+    try {
+      url =
+        urlString
+        |> Url.parse()
+
+      if (url.path == "/") {
+        url.hostname
+      } else {
+        "#{url.hostname}#{url.path}"
+      }
     }
-  } where {
-    url =
-      urlString
-      |> Url.parse()
   }
 
   fun getMock (url : String) : Promise(Never, ReportResult) {

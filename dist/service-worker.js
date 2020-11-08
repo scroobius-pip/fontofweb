@@ -1,4 +1,4 @@
-const CACHE = '320ef3dd1c23d67f646f6d4e87f75f6be9986226e79680fcfabe23998aac7784';
+const CACHE = '99c964766827627995f1686b0b0dff2a25a1a01d372d87db8893d763b536ddbf';
 const RUNTIME = 'runtime';
 const PRECACHE_URLS = ['/android-chrome-192x192.png',
 '/android-chrome-512x512.png',
@@ -28,7 +28,8 @@ const PRECACHE_URLS = ['/android-chrome-192x192.png',
 '/index.js',
 '/manifest.json',
 '/preview.jpg',
-'/site.webmanifest'];
+'/site.webmanifest',
+'/twitter.svg'];
 
 // On install precache all static resources
 self.addEventListener('install', event => {
