@@ -1,6 +1,12 @@
-const CACHE = '5de03aee702ce4e3737ceaede4668375886a60a969a27bbb4f3d51784aad720b';
+const CACHE = '320ef3dd1c23d67f646f6d4e87f75f6be9986226e79680fcfabe23998aac7784';
 const RUNTIME = 'runtime';
-const PRECACHE_URLS = ['/icon-120x120.png',
+const PRECACHE_URLS = ['/android-chrome-192x192.png',
+'/android-chrome-512x512.png',
+'/apple-touch-icon.png',
+'/favicon-16x16.png',
+'/favicon-32x32.png',
+'/favicon.ico',
+'/icon-120x120.png',
 '/icon-128x128.png',
 '/icon-144x144.png',
 '/icon-152x152.png',
@@ -20,7 +26,9 @@ const PRECACHE_URLS = ['/icon-120x120.png',
 '/icon-96x96.png',
 '/index.html',
 '/index.js',
-'/manifest.json'];
+'/manifest.json',
+'/preview.jpg',
+'/site.webmanifest'];
 
 // On install precache all static resources
 self.addEventListener('install', event => {
