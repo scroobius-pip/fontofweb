@@ -62,7 +62,11 @@ module Report {
   }
 
   fun normalizeUrl (urlString : String) : String {
-    url.hostname
+    if (url.path == "/") {
+      url.hostname
+    } else {
+      "#{url.hostname}#{url.path}"
+    }
   } where {
     url =
       urlString

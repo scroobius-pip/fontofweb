@@ -39,6 +39,7 @@ component AnalyzeInput {
       letter-spacing: 1.25px;
       float: right;
 
+      /* display: block; */
       if (loading) {
         background-color: grey;
       }

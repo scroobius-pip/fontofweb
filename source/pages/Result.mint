@@ -176,6 +176,8 @@ component ResultPage {
         </FontBackground>
       </div>
 
+      <Loader display={loading}/>
+
       <div::results>
         <{ renderResult }>
       </div>
