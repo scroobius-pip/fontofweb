@@ -125,6 +125,7 @@ component AnalyzeInput {
   fun render : Html {
     <div::container>
       <input
+        disabled={loading}
         placeholder="www.example.com"
         onKeyDown={handleKeyDown}
         value={value}
