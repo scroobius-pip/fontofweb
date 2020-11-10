@@ -74,6 +74,14 @@ component LandingPage {
       </FontBackground>
 
       <div style="padding:1em;text-align:center">
+        <a
+          style="color:white;opacity:0.8"
+          href="https://twitter.com/font_web">
+
+          "Follow Us On Twitter"
+
+        </a>
+
         <p style="color:white;opacity:0.5">
           "This tool is for educational use and downloaded fonts may require additional licensing for personal or commercial use."
         </p>
