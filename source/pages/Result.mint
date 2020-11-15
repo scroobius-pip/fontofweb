@@ -187,19 +187,10 @@ component ResultPage {
       <{
         case (result) {
           ReportResult::Success data =>
-            <div style="padding:1em;text-align:center;">
-              <a
-                style="color:white;opacity:0.8"
-                href="https://twitter.com/font_web">
-
-                "Follow Us On Twitter"
-
-              </a>
-
-              <p style="color:white;opacity:0.6">
-                "This tool is for educational use and downloaded fonts may require additional licensing for personal or commercial use."
-              </p>
-            </div>
+            <>
+              <Margin value="20px"/>
+              <Footer/>
+            </>
 
           => Html.empty()
         }
