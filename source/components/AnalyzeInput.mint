@@ -6,6 +6,49 @@ component AnalyzeInput {
   property onSubmit : Function(String, Promise(Never, Void))
   property onChange : Function(String, Promise(Never, Void))
 
+  style showLarge {
+    @media (max-width: 750px) {
+      display: none;
+    }
+  }
+
+  style showSmall {
+    display: none;
+
+    @media (max-width: 750px) {
+      display: initial;
+    }
+  }
+
+  style button (full : Bool) {
+    color: #{Color:WHITE};
+    background-color: #{Color:BLACK};
+    transition: background 400ms;
+    border: none;
+    cursor: pointer;
+    border: none;
+    font-weight: 500;
+    padding: 1em 3em;
+    outline: none;
+    letter-spacing: 1.25px;
+    float: right;
+
+    if (full) {
+      margin-top: .5em;
+      margin-bottom: 1em;
+      width: 100%;
+    }
+
+    /* display: block; */
+    if (loading) {
+      background-color: grey;
+    }
+
+    if (!isValidUrl(value)) {
+      background-color: grey;
+    }
+  }
+
   style container {
     background-color: #{Color:GREY};
 
@@ -24,29 +67,6 @@ component AnalyzeInput {
 
       font-size: 1.5em;
       font-family: Poppins, sans-serif;
-    }
-
-    button {
-      color: #{Color:WHITE};
-      background-color: #{Color:BLACK};
-      transition: background 400ms;
-      border: none;
-      cursor: pointer;
-      border: none;
-      font-weight: 500;
-      padding: 1em 3em;
-      outline: none;
-      letter-spacing: 1.25px;
-      float: right;
-
-      /* display: block; */
-      if (loading) {
-        background-color: grey;
-      }
-
-      if (!isValidUrl(value)) {
-        background-color: grey;
-      }
     }
   }
 
@@ -71,15 +91,16 @@ component AnalyzeInput {
     height: 100%;
   }
 
+  /*
   style button {
-    color: #{Color:WHITE};
-    background-color: #{Color:BLACK};
-    border: none;
-    cursor: pointer;
-    border: none;
-    padding: 1em 3em;
-  }
-
+     color: #{Color:WHITE};
+     background-color: #{Color:BLACK};
+     border: none;
+     cursor: pointer;
+     border: none;
+     padding: 1em 3em;
+   }
+  */
   fun isValidUrl (url : String) : Bool {
     `
     (()=>{
@@ -106,6 +127,18 @@ component AnalyzeInput {
     /* Html.Event.preventDefault(event) */
   }
 
+  fun renderButton (full : Bool) : Html {
+    <button::button(full) disabled={loading}>
+      <{
+        if (loading) {
+          "LOADING"
+        } else {
+          "ANALYZE"
+        }
+      }>
+    </button>
+  }
+
   fun handleKeyDown (event : Html.Event) {
     case (event.keyCode) {
       13 =>
@@ -123,28 +156,30 @@ component AnalyzeInput {
   }
 
   fun render : Html {
-    <div::container>
-      <input
-        disabled={loading}
-        placeholder="www.example.com"
-        onKeyDown={handleKeyDown}
-        value={value}
-        type="text"
-        onChange={handleInput}/>
+    <div>
+      <div::container>
+        <input
+          disabled={loading}
+          placeholder="www.example.com"
+          onKeyDown={handleKeyDown}
+          value={value}
+          type="text"
+          onChange={handleInput}/>
 
-      <a
+        <a::showLarge
+          href="/site/#{value}"
+          onClick={handleSubmit}>
+
+          <{ renderButton(false) }>
+
+        </a>
+      </div>
+
+      <a::showSmall
         href="/site/#{value}"
         onClick={handleSubmit}>
 
-        <button disabled={loading}>
-          <{
-            if (loading) {
-              "LOADING"
-            } else {
-              "ANALYZE"
-            }
-          }>
-        </button>
+        <{ renderButton(true) }>
 
       </a>
     </div>
