@@ -16,7 +16,7 @@ component AnalyzeInput {
     display: none;
 
     @media (max-width: 750px) {
-      display: initial;
+      display: block !important;
     }
   }
 
