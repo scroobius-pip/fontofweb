@@ -167,7 +167,7 @@ var Mint=function(){"use strict";var t,e,n,r,o,i={},a=[],s=/acit|ex(?:s|g|n|p|$)
   }
 
   .b {
-    display: initial;
+    display: block !important;
   }
 }
 
