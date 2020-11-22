@@ -169,6 +169,14 @@ var Mint=function(){"use strict";var t,e,n,r,o,i={},a=[],s=/acit|ex(?:s|g|n|p|$)
   .b {
     display: block !important;
   }
+
+  .d input {
+    width: 100% !important;
+  }
+
+  .u {
+    margin: auto;
+  }
 }
 
 .b {
