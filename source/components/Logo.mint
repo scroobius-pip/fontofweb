@@ -2,6 +2,10 @@ component Logo {
   style logo {
     height: 1.6em;
     cursor: pointer;
+
+    @media (max-width: 750px) {
+      margin: auto;
+    }
   }
 
   fun render {

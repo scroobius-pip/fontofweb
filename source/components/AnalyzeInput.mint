@@ -62,6 +62,11 @@ component AnalyzeInput {
       outline: none;
       background-color: #{Color:GREY};
       width: 80%;
+
+      @media (max-width: 750px) {
+        width: 100% !important;
+      }
+
       border: none;
       color: #{Color:PRIMARY};
 
