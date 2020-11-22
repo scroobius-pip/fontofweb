@@ -57,7 +57,7 @@ component LandingPage {
         </div>
 
         <div::body>
-          <h1>"Type a Website and Find Its Fonts"</h1>
+          <h1>"Type a Website and Identify its Fonts"</h1>
 
           <Margin value="15px"/>
 
