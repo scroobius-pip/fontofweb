@@ -59,8 +59,9 @@ component FontCard {
     font-weight: 600;
   }
 
-  style family (family : String) {
-    /* font-family: "#{String.toLowerCase(family)}"; */
+  style family (family : String, weight : String) {
+    font-family: "'#{family}', Poppins";
+    font-weight: "#{weight}";
   }
 
   style variants {
@@ -88,19 +89,51 @@ component FontCard {
     /* font-size: .5em; */
   }
 
+  fun addCors (url : String) : String {
+    "https://cors-anywhere.herokuapp.com/" + url
+  }
+
+  fun getFontSrc (fontData : FontData) : String {
+    fontData.src
+    |> Map.map(
+      (format : String, url : String) : String {
+        "url('#{addCors(url)}') format('#{format}')"
+      })
+    |> Map.values()
+    |> String.join(", ")
+  }
+
+  fun renderFontStyle (family : String, fontSrc : String) : String {
+    "
+       @font-face {
+         font-family: '#{family}';
+         src: #{fontSrc};
+       }
+          
+    "
+  }
+
   fun renderFontSrc (srcName : String, src : String) : Html {
     <a href={src}>
       <{ srcName }>
     </a>
   }
 
+  fun getFontWeight (fontData : FontData) : String {
+    Array.firstWithDefault(FontVariant("", "", ""), fontData.variants).weight
+  }
+
   fun renderFont (fontName : String, fontData : FontData) : Html {
     <div style="margin-bottom:48px;">
       <div::font>
         <div>
-          <span::family(fontName) style="margin-right:.2em;">
+          <span::family(fontName, getFontWeight(fontData)) style="margin-right:.2em;">
             <{ fontName }>
           </span>
+
+          <style>
+            <{ renderFontStyle(fontName, getFontSrc(fontData)) }>
+          </style>
         </div>
       </div>
 
