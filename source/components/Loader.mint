@@ -8,12 +8,13 @@ component Loader {
 
     margin: 100px auto;
     
-    animation: sk-rotateplane 1.2s infinite ease-in-out;
+   
 
     
   }
 
   style animation {
+     animation: sk-rotateplane 1.2s infinite ease-in-out;
       @keyframes sk-rotateplane {
   0% {
        transform: perspective(120px);
