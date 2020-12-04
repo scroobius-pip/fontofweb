@@ -29,7 +29,7 @@ component LandingPage {
     z-index: 10;
 
     h1 {
-      font-size: 2em;
+      font-size: 1.8em;
       margin: auto;
       text-align: center;
     }

@@ -1,6 +1,6 @@
 component Logo {
   style logo {
-    height: 1.6em;
+    height: 1.2em;
     cursor: pointer;
 
     @media (max-width: 750px) {

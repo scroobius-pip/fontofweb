@@ -35,7 +35,7 @@ component ResultPage {
     height: 100%;
 
     h1 {
-      font-size: 1.8em;
+      font-size: 1.4em;
       text-align: center;
     }
   }
