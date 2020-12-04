@@ -356,7 +356,7 @@ var Mint=function(){"use strict";var t,e,n,r,o,i={},a=[],s=/acit|ex(?:s|g|n|p|$)
 }
 
 .u {
-  height: 1.6em;
+  height: 1.2em;
   cursor: pointer;
 }
 
@@ -384,7 +384,7 @@ var Mint=function(){"use strict";var t,e,n,r,o,i={},a=[],s=/acit|ex(?:s|g|n|p|$)
 }
 
 .y h1 {
-  font-size: 2em;
+  font-size: 1.8em;
   margin: auto;
   text-align: center;
 }
@@ -432,7 +432,7 @@ var Mint=function(){"use strict";var t,e,n,r,o,i={},a=[],s=/acit|ex(?:s|g|n|p|$)
 }
 
 .af h1 {
-  font-size: 1.8em;
+  font-size: 1.4em;
   text-align: center;
 }
 
