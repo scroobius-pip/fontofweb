@@ -12,6 +12,14 @@ component ResultPage {
     width: 100%;
   }
 
+  style sectionheading {
+    font-size: 1.5em;
+    padding: .5em 1em;
+    padding-left: 0;
+    font-weight: 500;
+    color: #{Color:WHITE};
+  }
+
   style top {
     background-color: #{Color:WHITE};
     height: 100%;
@@ -19,7 +27,7 @@ component ResultPage {
 
   style inputcontainer {
     margin: auto;
-    max-width: 600px;
+    max-width: 800px;
     text-align: center;
   }
 
@@ -45,7 +53,7 @@ component ResultPage {
     margin: auto;
     margin-top: 48px;
     display: grid;
-    max-width: 542px;
+    max-width: 800px;
 
     /* height: 100vh; */
   }
@@ -105,13 +113,48 @@ component ResultPage {
     }
   }
 
+  fun getFontList (fontInfo : Map(String, Map(String, FontData))) : Map(String, FontData) {
+    fontData
+  } where {
+    fontInfoValues =
+      Map.values(fontInfo)
+
+    fontData =
+      fontInfoValues
+      |> Array.map(
+        (elementData : Map(String, FontData)) {
+          elementData
+          |> Map.values
+          |> Array.reduce(
+            Map.empty(),
+            (previousMap : Map(String, FontData), item : FontData) {
+              Map.empty()
+              |> Map.set(item.fontName, item)
+              |> Map.merge(previousMap)
+            })
+        })
+      |> Array.reduce(
+        Map.empty(),
+        (
+          previousMap : Map(String, FontData),
+          item : Map(String, FontData)
+        ) {
+          item
+          |> Map.merge(previousMap)
+        })
+  }
+
   fun renderFontCard (
     elementName : String,
     elementData : Map(String, FontData)
   ) : Html {
-    <FontCard
+    <FontDetailCard
       elementName={elementName}
       elementData={elementData}/>
+  }
+
+  fun renderSummaryCard (fontData : FontData) : Html {
+    <FontSummaryCard fontData={fontData}/>
   }
 
   get renderResult {
@@ -120,11 +163,28 @@ component ResultPage {
 
       ReportResult::Success data =>
         <div>
-          <{
-            data.fontInfo
-            |> Map.map(renderFontCard())
-            |> Map.values()
-          }>
+          <section>
+            <h2::sectionheading>"Summary"</h2>
+
+            <div>
+              <{
+                getFontList(data.fontInfo)
+                |> Map.values
+                |> Array.map(renderSummaryCard)
+              }>
+            </div>
+          </section>
+
+          /* <h2>"Details"</h2> */
+          <section::mt(40)>
+            <h2::sectionheading>"Details"</h2>
+
+            <{
+              data.fontInfo
+              |> Map.map(renderFontCard)
+              |> Map.values()
+            }>
+          </section>
         </div>
 
       ReportResult::Empty => Html.empty()
