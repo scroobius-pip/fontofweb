@@ -1,4 +1,4 @@
-const CACHE = 'c742c8c4bb8c261a72ca3194e1a9000f43187196d1d3b017fe7e685d4f052973';
+const CACHE = '865f5f7a401fd2af362038211338ab1d0b9b819aaddf38fd670c311ee28ab1ae';
 const RUNTIME = 'runtime';
 const PRECACHE_URLS = ['/android-chrome-192x192.png',
 '/android-chrome-512x512.png',
@@ -26,6 +26,7 @@ const PRECACHE_URLS = ['/android-chrome-192x192.png',
 '/icon-96x96.png',
 '/index.html',
 '/index.js',
+'/invisible1.ttf',
 '/manifest.json',
 '/preview.jpg',
 '/site.webmanifest',
