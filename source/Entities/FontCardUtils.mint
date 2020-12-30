@@ -1,6 +1,6 @@
 module FontCardUtils {
   fun addCors (url : String) : String {
-    "https://cors-anywhere.herokuapp.com/" + url
+    "https://proxier-blond.vercel.app/" + url
   }
 
   fun getFontSrc (fontData : FontData) : String {
