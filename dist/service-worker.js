@@ -1,4 +1,4 @@
-const CACHE = '90d33dad8c46a5137f3edb6a7050d6d7efe92b98e8e481f1a398ceabdfa68ff7';
+const CACHE = '1b2ab3b41e70675bb0ce2763627b53a95a5b593d54c4265d73930e20b036376c';
 const RUNTIME = 'runtime';
 const PRECACHE_URLS = ['/android-chrome-192x192.png',
 '/android-chrome-512x512.png',
