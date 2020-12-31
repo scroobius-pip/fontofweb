@@ -1,6 +1,6 @@
 module FontCardUtils {
   fun addCors (url : String) : String {
-    "https://proxy.fontofweb.com/api?url=" + url
+    "https://proxy.fontofweb.com/" + url
   }
 
   fun getFontSrc (fontData : FontData) : String {

@@ -176,7 +176,7 @@ var Mint=function(){"use strict";var t,e,n,r,o,i={},a=[],s=/acit|ex(?:s|g|n|p|$)
       }
 
       return ga
-    })())}});const AG=new(class extends _M{constructor(){super();this._d({h:(()=>{return `#FF5F58`}),a:(()=>{return `#FFFFFF`}),g:(()=>{return `#EEEEEE`}),b:(()=>{return `#000000`}),ah:(()=>{return `#FF7F79`})})}});const AO=new(class extends _M{gb(gc){return `https://proxy.fontofweb.com/api?url=` + gc}bh(gf){return ((..._) => AP.ao(`, `, ..._))(AR.au(((..._) => AR.av(((ge, gd)=>{return `url('${AO.gb(gd)}') format('${ge}')`}), ..._))(gf.src)))}bg(gg,gh){return `
+    })())}});const AG=new(class extends _M{constructor(){super();this._d({h:(()=>{return `#FF5F58`}),a:(()=>{return `#FFFFFF`}),g:(()=>{return `#EEEEEE`}),b:(()=>{return `#000000`}),ah:(()=>{return `#FF7F79`})})}});const AO=new(class extends _M{gb(gc){return `https://proxy.fontofweb.com/` + gc}bh(gf){return ((..._) => AP.ao(`, `, ..._))(AR.au(((..._) => AR.av(((ge, gd)=>{return `url('${AO.gb(gd)}') format('${ge}')`}), ..._))(gf.src)))}bg(gg,gh){return `
        @font-face {
          font-family: '${gg}';
          src: ${gh};
