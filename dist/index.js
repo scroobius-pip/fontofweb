@@ -176,7 +176,7 @@ var Mint=function(){"use strict";var t,e,n,r,o,i={},a=[],s=/acit|ex(?:s|g|n|p|$)
       }
 
       return gb
-    })())}});const AG=new(class extends _M{constructor(){super();this._d({h:(()=>{return `#FF5F58`}),a:(()=>{return `#FFFFFF`}),g:(()=>{return `#EEEEEE`}),b:(()=>{return `#000000`}),ah:(()=>{return `#FF7F79`})})}});const AO=new(class extends _M{gc(gd){return `http://2a39a0eb0a63.ngrok.io/api?url=` + gd}bh(gg){return ((..._) => AP.ao(`, `, ..._))(AR.au(((..._) => AR.av(((gf, ge)=>{return `url('${AO.gc(ge)}') format('${gf}')`}), ..._))(gg.src)))}bg(gh,gi){return `
+    })())}});const AG=new(class extends _M{constructor(){super();this._d({h:(()=>{return `#FF5F58`}),a:(()=>{return `#FFFFFF`}),g:(()=>{return `#EEEEEE`}),b:(()=>{return `#000000`}),ah:(()=>{return `#FF7F79`})})}});const AO=new(class extends _M{gc(gd){return `http://proxy.fontofweb.com/api?url=` + gd}bh(gg){return ((..._) => AP.ao(`, `, ..._))(AR.au(((..._) => AR.av(((gf, ge)=>{return `url('${AO.gc(ge)}') format('${gf}')`}), ..._))(gg.src)))}bg(gh,gi){return `
        @font-face {
          font-family: '${gh}';
          src: ${gi};
