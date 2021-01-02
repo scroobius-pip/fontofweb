@@ -88,6 +88,7 @@ component FontSummaryCard {
 
         <div::show(Map.isEmpty(fontData.src))>
           <Margin/>
+
           <p::preview::family(fontData.fontName, FontCardUtils.getFontWeight(fontData))>"Almost before we knew it, we had left the ground."</p>
           <Margin/>
         </div>

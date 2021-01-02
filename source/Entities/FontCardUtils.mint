@@ -18,7 +18,7 @@ module FontCardUtils {
        @font-face {
          font-family: '#{family}';
          src: #{fontSrc};
-         font-display: swap;
+         font-display: block;
        }
           
     "

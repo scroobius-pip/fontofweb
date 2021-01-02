@@ -1,10 +1,11 @@
 component Loader {
   property display = false
+  property color = "#fff"
 
   style spinner {
     width: 40px;
     height: 40px;
-    background-color: #fff;
+    background-color: #{color};
 
     margin: 100px auto;
     
