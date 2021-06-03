@@ -73,6 +73,9 @@ component LandingPage {
         </div>
       </FontBackground>
 
+      /* <Margin/> */
+
+      /* <Margin/> */
       <Footer/>
     </div>
   }

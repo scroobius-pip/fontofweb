@@ -32,7 +32,7 @@ component ResultPage {
   }
 
   style mt (value : Number) {
-    margin-top: "#{value}px";
+    margin-top: #{value}px;
   }
 
   style body {

@@ -11,7 +11,7 @@ component Footer {
   }
 
   fun render {
-    <div style="text-align:center">
+    <div style="text-align:center; ">
       <div>
         <a::link href="https://twitter.com/font_web">
           "Follow Us On Twitter"
