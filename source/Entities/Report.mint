@@ -25,7 +25,7 @@ enum ReportResult {
 /* Map(String,Map(String,FontData)) */
 module Report {
   fun parseResponse (string : String) : ReportResult {
-    try {
+    try { 
       object =
         Json.parse(string)
         |> Maybe.toResult(ReportResult::Error("Unable to Parse"))
@@ -51,7 +51,7 @@ module Report {
         normalizeUrl(url)
 
       response =
-        "http://api.fontofweb.com/?url=#{String.trim(url)}"
+        "https://api.fontofweb.com/?url=#{String.trim(url)}"
         |> Http.get()
         |> Http.send()
 
