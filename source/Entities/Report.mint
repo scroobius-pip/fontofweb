@@ -51,7 +51,7 @@ module Report {
         normalizeUrl(url)
 
       response =
-        "https://api.shapcart.com/?url=#{String.trim(url)}"
+        "https://api.fontofweb.com/?url=#{String.trim(url)}"
         |> Http.get()
         |> Http.send()
 
