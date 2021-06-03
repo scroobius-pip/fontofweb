@@ -42,8 +42,8 @@ component FontSummaryCard {
   }
 
   style family (family : String, weight : String) {
-    font-family: "'#{family}', invisible";
-    font-weight: "#{weight}";
+    font-family: '#{family}', invisible;
+    font-weight: #{weight};
   }
 
   style show (value : Bool) {

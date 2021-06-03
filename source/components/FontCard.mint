@@ -60,8 +60,8 @@ component FontDetailCard {
   }
 
   style family (family : String, weight : String) {
-    font-family: "'#{family}', Poppins";
-    font-weight: "#{weight}";
+    font-family: #{family}', Poppins;
+    font-weight: #{weight};
   }
 
   style variants {
