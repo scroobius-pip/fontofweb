@@ -25,7 +25,7 @@ enum ReportResult {
 /* Map(String,Map(String,FontData)) */
 module Report {
   fun parseResponse (string : String) : ReportResult {
-    try { 
+    try {
       object =
         Json.parse(string)
         |> Maybe.toResult(ReportResult::Error("Unable to Parse"))
