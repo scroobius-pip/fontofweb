@@ -2,13 +2,13 @@ import * as Form from '@radix-ui/react-form';
 import type { MetaFunction } from "@remix-run/node";
 import { useSearchParams } from '@remix-run/react';
 import { useEffect, useRef, useState } from 'react';
+
 type FontWeights = string[]
 
 type FontName = string
 type FontSrc = { src: any; parentPath: string; }
 type SrcMap = Map<FontName, FontSrc>
 interface FontVariant {
-
   weight: string;
   lineHeight: string;
   size: string;
@@ -65,7 +65,6 @@ export default function Index() {
       console.log(event)
       // Ensure the message comes from the expected iframe origin
       if (event.origin !== 'https://crawl.fontofweb.com') return;
-
       // Extract fontInfo from the received message
       const { fontInfo } = event.data;
       if (fontInfo && typeof fontInfo === 'object') {

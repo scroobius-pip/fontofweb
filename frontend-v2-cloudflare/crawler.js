@@ -9,6 +9,7 @@ var SrcTypes = /*#__PURE__*/ (function (SrcTypes) {
 })(SrcTypes || {});
 document.addEventListener("DOMContentLoaded", () => {
     const fontInfo = getFontInfo();
+    console.log(fontInfo)
     window.parent.postMessage(fontInfo, "https://www.fontofweb.com");
 });
 const getFontInfo = () => {
@@ -401,3 +402,4 @@ const getFontInfo = () => {
         count: fontNameSet.size
     };
 };
+// https://cdn.jsdelivr.net/gh/scroobius-pip/fontofweb/frontend-v2-cloudflare/crawler.js

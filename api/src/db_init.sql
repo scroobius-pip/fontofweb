@@ -14,12 +14,12 @@ CREATE TABLE "manufacturer" (
 
 CREATE TABLE "family" (
   "id" integer PRIMARY KEY,
-  "family" text,
+  "name" text UNIQUE,
   "designer_id" integer,
   "manufacturer_id" integer,
   "created_at" integer,
   "updated_at" integer,
-  UNIQUE("family", "designer_id", "manufacturer_id"),
+  UNIQUE("name", "designer_id", "manufacturer_id"),
   FOREIGN KEY ("designer_id") REFERENCES "designer" ("id"),
   FOREIGN KEY ("manufacturer_id") REFERENCES "manufacturer" ("id")
 );
@@ -27,10 +27,10 @@ CREATE TABLE "family" (
 CREATE TABLE "sub_family" (
   "id" integer PRIMARY KEY,
   "family_id" integer NOT NULL,
-  "sub_family" text NOT NULL,
+  "name" text NOT NULL,
   "created_at" integer,
   "updated_at" integer,
-  UNIQUE("family_id", "sub_family"),
+  UNIQUE("family_id", "name"),
   FOREIGN KEY ("family_id") REFERENCES "family" ("id")
 );
 
@@ -42,21 +42,28 @@ CREATE TABLE "sub_family_version" (
   FOREIGN KEY ("sub_family_id") REFERENCES "sub_family" ("id")
 );
 
+CREATE TABLE "usage_detail" (
+  "id" integer PRIMARY KEY,
+  "weight" integer,
+  "line_height" float,
+  "size" float,
+  UNIQUE("weight", "line_height", "size")
+);
+
 CREATE TABLE "element" (
   "id" integer PRIMARY KEY,
-  "name" text
+  "name" text UNIQUE
 );
 
 CREATE TABLE "usage" (
   "id" integer PRIMARY KEY,
   "element_id" integer,
   "sub_family_id" integer,
-  "weight" integer,
-  "line_height" float,
-  "size" float,
-  UNIQUE("element_id", "sub_family_id", "weight", "line_height", "size"),
+  "usage_detail_id" integer,
+  UNIQUE("element_id", "sub_family_id", "usage_detail_id"),
   FOREIGN KEY ("element_id") REFERENCES "element" ("id"),
-  FOREIGN KEY ("sub_family_id") REFERENCES "sub_family" ("id")
+  FOREIGN KEY ("sub_family_id") REFERENCES "sub_family" ("id"),
+  FOREIGN KEY ("usage_detail_id") REFERENCES "usage_detail" ("id")
 );
 
 CREATE TABLE "domain" (
@@ -81,21 +88,21 @@ CREATE TABLE "page" (
   FOREIGN KEY ("path_id") REFERENCES "path" ("id")
 );
 
+CREATE TABLE "page_history" (
+  "id" integer PRIMARY KEY,
+  "page_id" integer,
+  "screenshot_count" integer,
+  "created_at" integer,  -- when it was added to page table
+  "archived_at" integer, -- when it was added to page_history table
+  UNIQUE("page_id", "created_at"),
+  FOREIGN KEY ("page_id") REFERENCES "page" ("id")
+);
+
 CREATE TABLE "page_usage" (
   "page_id" integer,
   "usage_id" integer,
   FOREIGN KEY ("page_id") REFERENCES "page" ("id"),
   FOREIGN KEY ("usage_id") REFERENCES "usage" ("id")
-);
-
-CREATE TABLE "page_history" (
-  "id" integer PRIMARY KEY,
-  "page_id" integer,
-  "screenshot_count" integer,
-  "created_at" integer,
-  "archived_at" integer,
-  UNIQUE("page_id", "created_at"),
-  FOREIGN KEY ("page_id") REFERENCES "page" ("id")
 );
 
 CREATE TABLE "page_history_usage" (
@@ -115,7 +122,7 @@ CREATE TABLE "user" (
 CREATE TABLE "bookmark" (
   "user_id" integer NOT NULL,
   "page_id" integer,
-  "page_created_at" integer,
+  "page_created_at" integer, -- if null, use the latest in the page table, else go to page_history
   "collection_name" text,
   "created_at" integer NOT NULL,
   UNIQUE("user_id", "page_id", "collection_name"),
