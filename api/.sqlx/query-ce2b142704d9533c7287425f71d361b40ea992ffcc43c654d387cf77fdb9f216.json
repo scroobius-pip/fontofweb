@@ -1,0 +1,50 @@
+{
+  "db_name": "SQLite",
+  "query": "SELECT DISTINCT \n    e.name as element_name,\n    f.family as font_family,\n    sf.sub_family,\n    u.weight,\n    u.size,\n    u.line_height\nFROM element e\nJOIN usage u ON e.id = u.element_id\nJOIN sub_family sf ON u.sub_family_id = sf.id\nJOIN family f ON sf.family_id = f.id\nWHERE f.family = 'Gotham'\nORDER BY e.name;",
+  "describe": {
+    "columns": [
+      {
+        "name": "element_name",
+        "ordinal": 0,
+        "type_info": "Text"
+      },
+      {
+        "name": "font_family",
+        "ordinal": 1,
+        "type_info": "Text"
+      },
+      {
+        "name": "sub_family",
+        "ordinal": 2,
+        "type_info": "Text"
+      },
+      {
+        "name": "weight",
+        "ordinal": 3,
+        "type_info": "Integer"
+      },
+      {
+        "name": "size",
+        "ordinal": 4,
+        "type_info": "Float"
+      },
+      {
+        "name": "line_height",
+        "ordinal": 5,
+        "type_info": "Float"
+      }
+    ],
+    "parameters": {
+      "Right": 0
+    },
+    "nullable": [
+      true,
+      true,
+      false,
+      true,
+      true,
+      true
+    ]
+  },
+  "hash": "ce2b142704d9533c7287425f71d361b40ea992ffcc43c654d387cf77fdb9f216"
+}

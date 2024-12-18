@@ -1,0 +1,140 @@
+Table designer {
+  id integer [pk]
+  name text
+  url text
+  indexes {
+    (name, url) [unique]
+  }
+}
+
+table manufacturer {
+  id integer [pk]
+  name text
+  url text
+  indexes {
+    (name, url) [unique]
+  }
+}
+
+Table family {
+  id integer [pk]
+  family text [unique]
+  designer_id integer [ref: > designer.id]
+  manufacturer_id integer [ref: > manufacturer.id]
+  created_at timestamp
+  updated_at timestamp
+
+  indexes {
+    (family, designer_id, manufacturer_id) [unique]
+  }
+}
+
+Table sub_family {
+  id integer [pk]
+  family_id integer [ref: > family.id, not null]
+  sub_family text [not null]
+  created_at timestamp
+  updated_at timestamp
+  indexes {
+    (family_id, sub_family) [unique]
+  }
+}
+
+Table sub_family_version {
+  sub_family_id integer [ref: > sub_family.id, not null]
+  version float [not null]
+  src text
+  indexes {
+    (sub_family_id, version) [unique]
+  }
+}
+
+
+Table usage {
+  id integer [pk]
+  element_id integer [ref: > element.id]
+  sub_family_id integer [ref: > sub_family.id]
+  weight integer
+  line_height float
+  size float
+  indexes {
+    (element_id, sub_family_id, weight, line_height, size) [unique]
+  }
+}
+
+Table element {
+  id integer [pk]
+  name text 
+}
+
+Table page {
+  id integer [pk]
+  path_id integer [ref: > path.id]
+  screenshot_count integer
+  created_at timestamp [not null]
+  updated_at timestamp [not null]
+ }
+
+Table page_usage {
+  page_id integer [ref: > page.id]
+  usage_id integer [ref: > usage.id]
+}
+
+Table domain {
+  id integer [pk]
+  url text [unique]
+}
+
+Table path {
+  id integer [pk]
+  name text
+  domain_id integer [ref: > domain.id]
+  indexes {
+    (domain_id, name) [unique]
+  }
+}
+
+
+Table page_history {
+  id integer [pk]
+  page_id integer [ref: > page.id]
+  screenshot_count integer
+  created_at timestamp [note: "when it was added to page table"]
+  archived_at timestamp [note: "when it was added to page_history table"]
+  indexes {
+    (page_id, created_at) [unique]
+  }
+}
+
+
+Table page_history_usage {
+  // id integer
+  page_history_id integer [ref: > page_history.id]
+  usage_id integer [ref: > usage.id]
+}
+
+ 
+Table user {
+  id integer [pk, not null]
+  email text [unique, not null]
+  created_at timestamp [not null]
+  updated_at timestamp
+}
+
+Table bookmark {
+  user_id integer [ref: < user.id, not null]
+  page_id integer [ref: < page.id]
+  page_created_at timestamp [note: "if null, use the latest in the page table, else go to page_history"]
+
+
+  collection_name text
+  created_at timestamp [not null]
+  
+  indexes {
+    (user_id, page_id, collection_name) [unique]
+  }
+}
+
+Ref: bookmark.(page_id, page_created_at) > page_history.(page_id,created_at)
+
+// /domain_id/path_id/created_at

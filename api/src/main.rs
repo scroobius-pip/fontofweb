@@ -1,38 +1,62 @@
-use axum::{
-    async_trait,
-    extract::FromRequestParts,
-    http::{request::Parts, StatusCode},
-    response::{IntoResponse, Response},
-    routing::{get, post},
-    Json, RequestPartsExt, Router,
-};
-use axum_extra::{
-    headers::{authorization::Bearer, Authorization},
-    TypedHeader,
-};
-use jsonwebtoken::{decode, encode, DecodingKey, EncodingKey, Header, Validation};
-use once_cell::sync::Lazy;
-use serde::{Deserialize, Serialize};
-use serde_json::json;
-use std::time::SystemTime;
-use std::{error::Error, fmt::Display};
+#[macro_use]
+extern crate dotenv_codegen;
+extern crate dotenv;
 
-#[shuttle_runtime::main]
-async fn main() -> shuttle_axum::ShuttleAxum {
-    let app = Router::new().route("/", get(index));
+use axum::http::{header, Method};
+use db::DB;
+use routes::build_router;
+use tower::ServiceBuilder;
+use tower_http::cors::{AllowOrigin, CorsLayer};
+mod db;
+mod entities;
+mod routes;
+mod transactions;
 
-    Ok(app.into())
+use env_logger::Env;
+
+#[tokio::main(flavor = "multi_thread")]
+async fn main() {
+    println!("cargo::rerun-if-changed=.env");
+    setup_logs();
+    log::info!("HOST: {}", dotenv!("HOST"));
+
+    let db = DB::new().await.expect("failed to create db connection");
+    let cors = CorsLayer::new()
+        .allow_methods([Method::GET, Method::POST, Method::DELETE])
+        .allow_headers([header::ACCEPT, header::CONTENT_TYPE, header::COOKIE])
+        .allow_credentials(true)
+        .allow_origin(AllowOrigin::predicate(|origin, _| {
+            origin.as_bytes().ends_with(b"fontofweb.com")
+        }));
+
+    #[cfg(debug_assertions)]
+    let cors = cors.allow_origin(AllowOrigin::list(
+        ["http://localhost:3000", "https://localhost:3000"]
+            .iter()
+            .flat_map(|origin| origin.parse()),
+    ));
+    let app = build_router().layer(cors);
+    let add = format!("0.0.0.0:{}", dotenv!("PORT"));
+    let listener = tokio::net::TcpListener::bind(add).await.unwrap();
+
+    axum::serve(listener, app).await.unwrap();
 }
 
-#[derive(Serialize)]
-struct FontInfo {
-    text: String,
+fn get_font_data() {
+    // let font_bytes = include_bytes!("rm_neue_bold.woff2");
+    // assert!(is_woff2(font_bytes));
+    // let ttf_font = convert_woff2_to_ttf(&mut font_bytes.as_slice()).unwrap();
+
+    // let mut font = font::load(&mut &ttf_font[..]).unwrap();
+
+    // if let Table::Name(name_table) = font.get_table(b"name").unwrap().unwrap() {
+    //     for entry in &name_table.records {
+    //         println!("{:?}", entry)
+    //     }
+    // }
 }
 
-async fn index() -> Result<Json<FontInfo>, StatusCode> {
-    let url = "https://www.nytimes.com/";
-    let text = reqwest::get(url).await.unwrap().text().await.unwrap();
-    // A public endpoint that anyone can access
-    // "Welcome to the public area :)"
-    Ok(Json(FontInfo { text }))
+fn setup_logs() {
+    std::env::set_var("RUST_BACKTRACE", "1");
+    env_logger::Builder::from_env(Env::default().default_filter_or("info")).init();
 }
