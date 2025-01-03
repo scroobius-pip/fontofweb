@@ -132,7 +132,7 @@ export default function Index() {
                           <p>Line Height: {variant.lineHeight}</p>
                           {
                             Object.entries(fontData.src).map(([fontSrcType, fontSrc]) => {
-                              return <a href={fontSrc} download >
+                              return <a href={decodeURI(fontSrc)} download >
                                 {fontSrcType}
                               </a>
                             })
