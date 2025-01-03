@@ -127,12 +127,16 @@ const getFontInfo = () => {
             }
         };
         documentStylesheets.forEach((documentStylesheet) => {
-            const cssRules = [
-                ...(documentStylesheet === null || documentStylesheet === void 0
-                    ? void 0
-                    : documentStylesheet.cssRules)
-            ];
-            cssRules.forEach(getCssRules);
+            try {
+                const cssRules = [
+                    ...(documentStylesheet === null || documentStylesheet === void 0
+                        ? void 0
+                        : documentStylesheet.cssRules)
+                ];
+                cssRules.forEach(getCssRules);
+            } catch (error) {
+                console.error('unable to get rules:', error, documentStylesheet.href)
+            }
         });
         return map;
     }
