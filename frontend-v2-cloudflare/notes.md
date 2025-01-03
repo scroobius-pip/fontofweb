@@ -1,0 +1,1 @@
+Instead of searching stylesheets manually by going through the DOM tree, I could intercept font file requests with a service worker

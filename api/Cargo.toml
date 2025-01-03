@@ -24,7 +24,18 @@ dotenv_codegen = "0.15.0"
 axum-typed-routing-macros = "0.2.1"
 env_logger = "0.11.5"
 log = "0.4.22"
-
+markup5ever_rcdom = "0.3.0"
+html5ever = "0.27.0"
+style = { git = "https://github.com/servo/stylo", branch = "2024-12-04", features = [
+    "servo",
+] }
+selectors = { git = "https://github.com/servo/stylo", branch = "2024-12-04" }
+style_dom = { git = "https://github.com/servo/stylo", package = "dom", branch = "2024-12-04" }
+atomic_refcell = "0.1.13"
+euclid = "0.22"
+app_units = "0.7"
+by_address = "1.2.1"
+servo = { git = "https://github.com/servo/servo" }
 
 [profile.dev.package.sqlx-macros]
 opt-level = 3

@@ -8,6 +8,7 @@ use routes::build_router;
 use tower::ServiceBuilder;
 use tower_http::cors::{AllowOrigin, CorsLayer};
 mod db;
+mod detect;
 mod entities;
 mod routes;
 mod transactions;
@@ -43,6 +44,7 @@ async fn main() {
 }
 
 fn get_font_data() {
+    detect::main();
     // let font_bytes = include_bytes!("rm_neue_bold.woff2");
     // assert!(is_woff2(font_bytes));
     // let ttf_font = convert_woff2_to_ttf(&mut font_bytes.as_slice()).unwrap();

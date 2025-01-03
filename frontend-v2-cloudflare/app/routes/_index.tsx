@@ -132,7 +132,8 @@ export default function Index() {
                           <p>Line Height: {variant.lineHeight}</p>
                           {
                             Object.entries(fontData.src).map(([fontSrcType, fontSrc]) => {
-                              return <a href={decodeURI(fontSrc)} download >
+                              return <a href={(new URLSearchParams(fontSrc).get('url') || '#'
+                              )} download >
                                 {fontSrcType}
                               </a>
                             })
@@ -146,8 +147,8 @@ export default function Index() {
             </li>
           ))}
         </ul>
-      </div>
-    </div>
+      </div >
+    </div >
   );
 }
 
